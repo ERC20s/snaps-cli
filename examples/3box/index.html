@@ -49,7 +49,7 @@
       send: async (request, callback) => {
         let response
         try {
-          response = await ethereum.send('wallet_invokePlugin', [snapId, request])
+          response = await ethereum.request('wallet_invokePlugin', [snapId, request])
           callback(null, response.result)
         } catch (err) {
           callback(err)
@@ -71,7 +71,7 @@
     async function connect () {
       // TODO - In the future Box.openBox should be able to detect
       // 3ID support if 'ethereum' is passed to it directly.
-      const result = await ethereum.send({
+      const result = await ethereum.request({
         method: 'wallet_enable',
         params: [{
           wallet_plugin: { [snapId]: {} },
